@@ -1,6 +1,4 @@
 /*
- 
- 
    interview 1 - blonde lady - ? -
     interpreting roman numerals
 
