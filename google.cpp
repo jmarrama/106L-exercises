@@ -17,3 +17,17 @@ implement find in O(log n) time
   implement binary search tree using an array
 
 */
+
+
+#include <iostream>
+#include <vector>
+#include <iterator>
+#include <map>
+#include <set>
+
+using namespace std;
+
+int main(){
+
+  return 0;
+}

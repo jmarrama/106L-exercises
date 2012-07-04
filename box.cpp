@@ -1,19 +1,17 @@
 /*
- 
- 
-   interview 1 - blonde lady - ? -
+   interview 1 - blonde lady - Kimber!!!
     interpreting roman numerals
 
-  interview 2 - cool enthusiastic guy - 
+  interview 2 - cool enthusiastic guy - Tony!!!
     print all permutations of a phone number
     angles between hands on a clock
 
-  interview 3 - fat mean guy -
+  interview 3 - James!!!
     merge k sorted arrays of length n into one
     practical considerations of both approaches
     merge 2 sorted arrays w/ code
 
-  interview 4 - sorta nice ethnic guy -
+  interview 4 - sorta nice ethnic guy - ?
     check if a tree is a "uni" tree - i.e. tree of all the same value
     check how many subtrees are uni subtrees
     deep copy a graph
@@ -48,8 +46,10 @@ void printNumberPerms(string num);
 map<char, string> getNumMap();
 vector<int> mergeLists(vector<vector<int> > arrs);
 void inter_three();
+void inter_four();
 void inter_two();
 void inter_one();
+void int_four_tree();
 void printTree(TN* root);
 bool isUni(TN* node, int rootVal);
 pair<int, bool> numUniSubtrees(TN* node);
@@ -60,31 +60,10 @@ int main(){
   //inter_one();
   //inter_two();
   //inter_three();
-
-  cout << endl << "interview 4 : " << endl;
-
-  TN l;
-  l.left = NULL;
-  l.right = NULL;
-  l.value = 1;
-  TN t;
-  t.left = &l;
-  t.right = NULL;
-  t.value = 0;
-  TN r;
-  r.left = NULL;
-  r.right = NULL;
-  r.value = 0;
-  TN root;
-  root.left = &t;
-  root.right = &r;
-  root.value = 0;
-
-  printTree(&root);
-  cout << endl << isUni(&root, root.value) << endl;
-  cout << endl << numUniSubtrees(&root).first << endl;
+  inter_four();
 
   //make graph
+  /*
   GN a;
   a.neighbors = new GN*[2];
   a.value = 1;
@@ -115,6 +94,7 @@ int main(){
   cout << endl << endl;
 
   printGraph(newa);
+  */
 
 
   return 0;
@@ -190,14 +170,18 @@ void printGraph(GN* node){
   printRec(node, printed);
 }
 
-//first = num uni trees, second = is subtree uni
+/*
+ * Returns a pair, where the int indicates how many uni subtrees it has,
+ * and the bool indicates whether that subtree is in fact a uni subtree
+ */
 pair<int, bool> numUniSubtrees(TN* node){
   if(node == NULL) return make_pair(0, true);
   
   pair<int, bool> l = numUniSubtrees(node->left);
   pair<int, bool> r = numUniSubtrees(node->right);
 
-  //if both subtrees are uni and values match...
+  //if both subtrees are uni and values match... this is a uni subtree too!
+  //count it!
   if(l.second && r.second &&
       (node->left == NULL || node->left->value == node->value) &&
       (node->right == NULL || node->right->value == node->value)){
@@ -214,12 +198,23 @@ bool isUni(TN* node, int rootVal){
   return (isUni(node->right, rootVal) && isUni(node->left, rootVal));
 }
 
+void printTreeHelper(TN* node, int level)
+{
+  if(node == NULL) return;
+
+  cout << "Level " << level << "\tValue " << node->value << endl;
+
+  printTreeHelper(node->left, level + 1);
+  printTreeHelper(node->right, level + 1);
+}
+
 void printTree(TN* node){
   if(node == NULL) return;
+
+  cout << "ROOT = " << node->value << endl;
   
-  printTree(node->left);
-  cout << node->value << endl;
-  printTree(node->right);
+  printTreeHelper(node->left, 1);
+  printTreeHelper(node->right, 1);
 }
 
 vector<int> mergeTwoLists(vector<int> a, vector<int> b){
@@ -420,6 +415,44 @@ void inter_one(){
   tests.push_back("IVXL");
   tests.push_back("CVXL");
   for(int i = 0; i < tests.size(); ++i){ cout << tests[i] << " = " << parseRoman(tests[i]) << endl; }
+}
+
+void inter_four()
+{
+  cout << endl << "interview 4 : " << endl;
+
+  int_four_tree();
+
+}
+
+TN* make_semi_uni_tree()
+{
+  TN* tns = new TN[4];
+  TN* l = tns;
+  l->left = NULL;
+  l->right = NULL;
+  l->value = 1;
+  TN* t = tns + 1;
+  t->left = l;
+  t->right = NULL;
+  t->value = 0;
+  TN* r = &tns[2];
+  r->left = NULL;
+  r->right = NULL;
+  r->value = 0;
+  TN* root = &tns[3];
+  root->left = t;
+  root->right = r;
+  root->value = 0;
+  return root;
+}
+
+void int_four_tree()
+{
+  TN* root = make_semi_uni_tree();
+  printTree(root);
+  cout << endl << isUni(root, root->value) << endl;
+  cout << endl << numUniSubtrees(root).first << endl;
 }
 
 
