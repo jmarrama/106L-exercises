@@ -25,6 +25,7 @@ func main() {
 }
 
 func do_interview_one() {
+	// NOTE: i don't implement the median-find algo here, just hand select it instead
 	arr1 := []int{1,2,3,4,5,6,7,8,9}
 	med1 := 5
 	move_and_sort_arr(arr1, med1)
