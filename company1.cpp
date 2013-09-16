@@ -1,17 +1,17 @@
 /*
-   interview 1 - blonde lady - Kimber!!!
+   interview 1
     interpreting roman numerals
 
-  interview 2 - cool enthusiastic guy - Tony!!!
+  interview 2
     print all permutations of a phone number
     angles between hands on a clock
 
-  interview 3 - James!!!
+  interview 3
     merge k sorted arrays of length n into one
     practical considerations of both approaches
     merge 2 sorted arrays w/ code
 
-  interview 4 - sorta nice ethnic guy - ?
+  interview 4
     check if a tree is a "uni" tree - i.e. tree of all the same value
     check how many subtrees are uni subtrees
     deep copy a graph
